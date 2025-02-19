@@ -1,38 +1,35 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline  # Nom du workflow
 
-on:
+on:  # Quand le workflow se déclenche
   push:
-    branches: [ master ]
+    branches: [ master ]  # Se déclenche quand on push sur master
   pull_request:
-    branches: [ master ]
+    branches: [ master ]  # Se déclenche quand on crée une PR vers master
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node.js
+jobs:  # Les tâches à exécuter
+  test:  # Première tâche : les tests
+    runs-on: ubuntu-latest  # Sur quelle machine ça tourne
+    steps:  # Étapes de la tâche
+      - uses: actions/checkout@v2  # Récupère le code
+      - name: Set up Node.js  # Configure Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Install dependencies
+      - name: Install dependencies  # Installe les dépendances
         run: npm install
-      - name: Run tests
+      - name: Run tests  # Lance les tests
         run: npm test
 
-  deploy:
-    needs: test
+  deploy:  # Deuxième tâche : le déploiement
+    needs: test  # Ne se lance que si les tests réussissent
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy to Netlify
+      - name: Deploy to Netlify  # Déploie sur Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: './public'
-          production-deploy: true
+          publish-dir: './public'  # Dossier à déployer
           production-branch: master
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-        env:
+        env:  # Variables d'environnement pour Netlify
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
