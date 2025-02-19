@@ -25,6 +25,22 @@ Ce projet est destiné à valider les connaissances en DevOps des élèves de 3�
 - 2 fichiers de test
 - Durée d'exécution : ~1.45s
 
+PS C:\Users\Wica\Documents\CC1-DEVOPS-3INFO> npm test
+
+> cc1-devops-3info@0.0.0 test
+> vitest run
+
+
+ RUN  v0.34.6 C:/Users/Wica/Documents/CC1-DEVOPS-3INFO
+
+ ✓ tests/index.test.js (1)
+ ✓ src/App.test.jsx (2)
+
+ Test Files  2 passed (2)
+      Tests  3 passed (3)
+   Start at  10:57:00
+   Duration  1.51s (transform 75ms, setup 274ms, collect 277ms, tests 29ms, environment 1.16s, prepare 396ms)
+
 ## Déploiement
 🌐 Site déployé : [https://theo-meneboode.netlify.app/](https://theo-meneboode.netlify.app/)
 
