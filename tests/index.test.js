@@ -1,7 +1,7 @@
-// tests/index.test.js
+import { existsSync } from 'fs';
+
 describe('Basic HTML Tests', () => {
     test('HTML file exists', () => {
-        const fs = require('fs');
-        expect(fs.existsSync('./index.html')).toBe(true);
+        expect(existsSync('./index.html')).toBe(true);
     });
 });
